@@ -2,6 +2,8 @@ package ru.hse.todo.console;
 
 import java.util.Scanner;
 
+import ru.hse.todo.console.options.ConsoleOption;
+
 /**
  * Hello world!
  *
@@ -12,7 +14,7 @@ public class Main
     {
         new ConsoleApp(
         	new MainMenu(),
-        	new Option(
+        	new ConsoleOption(
         		new Scanner(System.in)
         	)
         ).run();
