@@ -1,21 +1,23 @@
 package ru.hse.todo.console;
 
-import ru.hse.todo.console.options.ConsoleOption;
+import ru.hse.todo.console.options.Option;
 
-public class ConsoleApp {
+public final class ConsoleApp {
 	private final MainMenu menu;
-	private final ConsoleOption option;
+	private final Option option;
 	
 	/**
 	 * @param menu
 	 */
-	public ConsoleApp(MainMenu menu, ConsoleOption option) {
+	public ConsoleApp(MainMenu menu, Option option) {
 		this.menu = menu;
 		this.option = option;
 	}
 
 	public void run() {
-		this.menu.print();
-		this.option.print();
+		while (true) {
+			this.menu.print();
+			this.option.execute(0);
+		}
 	}
 }

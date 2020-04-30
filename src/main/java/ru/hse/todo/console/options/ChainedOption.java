@@ -1,8 +1,6 @@
-package ru.hse.todo.console;
+package ru.hse.todo.console.options;
 
-import ru.hse.todo.console.options.Option;
-
-public class ChainedOption implements Option {
+public final class ChainedOption implements Option {
 	private final Option origin;
 	private final Option next;
 	private final int number;
@@ -16,12 +14,16 @@ public class ChainedOption implements Option {
 		this.next = next;
 	}
 	
-	@Override
-	public void execute() {
-		if (5 == this.number) {
+	public void execute(int number) {
+		if (number == this.number) {
 			this.origin.execute();
 		} else {
-			this.next.execute();
+			this.next.execute(number);
 		}
+	}
+
+	@Override
+	public void execute() {
+		this.origin.execute();
 	}
 }
