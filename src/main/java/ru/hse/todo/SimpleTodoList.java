@@ -34,4 +34,14 @@ public class SimpleTodoList implements TodoList {
 			}
 		}
 	}
+
+	@Override
+	public int size() {
+		return this.list.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return this.list.isEmpty();
+	}
 }
