@@ -1,5 +1,7 @@
 package ru.hse.todo.console.options;
 
+import ru.hse.todo.console.Option;
+
 public final class ChainedOption implements Option {
 	private final Option origin;
 	private final Option next;

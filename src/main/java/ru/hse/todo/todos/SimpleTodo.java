@@ -1,7 +1,10 @@
-package ru.hse.todo;
+package ru.hse.todo.todos;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+
+import ru.hse.todo.Output;
+import ru.hse.todo.Todo;
 
 public class SimpleTodo implements Todo {
 	private final String name;

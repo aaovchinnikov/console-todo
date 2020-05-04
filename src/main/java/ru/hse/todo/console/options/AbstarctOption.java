@@ -1,5 +1,7 @@
 package ru.hse.todo.console.options;
 
+import ru.hse.todo.console.Option;
+
 /**
  * Defines default implemenation of {@link Option} interface with
  * {@link #execute(int)} method delegating directly to {@link #execute()} call 

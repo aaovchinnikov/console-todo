@@ -1,4 +1,4 @@
-package ru.hse.todo.console.options;
+package ru.hse.todo.console;
 
 public interface Option {
 	/**

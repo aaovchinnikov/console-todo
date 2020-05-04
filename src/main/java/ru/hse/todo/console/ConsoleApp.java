@@ -1,7 +1,5 @@
 package ru.hse.todo.console;
 
-import ru.hse.todo.console.options.Option;
-
 public final class ConsoleApp {
 	private final MainMenu menu;
 	private final Option option;

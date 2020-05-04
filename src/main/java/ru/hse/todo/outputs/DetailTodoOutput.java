@@ -1,4 +1,4 @@
-package ru.hse.todo.storages;
+package ru.hse.todo.outputs;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -6,15 +6,17 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import ru.hse.todo.Output;
-import ru.hse.todo.SimpleTodo;
 import ru.hse.todo.Todo;
 
 /**
- * Single-use only {@link Output} for building in-memory {@link Todo}.
+ * Single-use only {@link Output} for printing detailed {@link Todo} information
+ * to standard output. Use {@link #printDetails()} when all data has been
+ * provided.
+ * 
  * @author Alexander Ovchinnikov
  *
  */
-public class TodoDtoOuput implements Output {
+public class DetailTodoOutput implements Output {
 	private boolean ready = false;
 	private String name;
 	private String descrition;
@@ -26,7 +28,7 @@ public class TodoDtoOuput implements Output {
 	public Output writeHeader(String header) {
 		if (this.ready) {
 			throw new IllegalStateException(
-					"Todo already has enogh data to be built. No writeXXX invocations are allowed now.");
+					"Output already has enogh data to print the Todo. No writeXXX invocations are allowed now.");
 		}
 		return this;
 	}
@@ -35,7 +37,7 @@ public class TodoDtoOuput implements Output {
 	public Output writePart(String name, String value) {
 		if (this.ready) {
 			throw new IllegalStateException(
-					"Todo already has enogh data to be built. No writeXXX invocations are allowed now.");
+					"Output already has enogh data to print the Todo. No writeXXX invocations are allowed now.");
 		}
 		switch (name) {
 		case "name": {
@@ -60,11 +62,13 @@ public class TodoDtoOuput implements Output {
 		this.ready = true;
 	}
 
-	public Todo build() {
+	public void printDetails() {
 		if (this.ready) {
-			return new SimpleTodo(name, descrition, due);
+			System.out.println("Name: " + this.name);
+			System.out.println("Description: " + this.descrition);
+			System.out.println("Due to: " + this.due.toLocalDateTime());
 		} else {
-			throw new IllegalStateException("Todo has not enogh data to be built.");
+			throw new IllegalStateException("Output doesn't have enogh data to print the Todo.");
 		}
 	}
 }

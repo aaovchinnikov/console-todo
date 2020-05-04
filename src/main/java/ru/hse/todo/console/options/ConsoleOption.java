@@ -2,6 +2,8 @@ package ru.hse.todo.console.options;
 
 import java.util.Scanner;
 
+import ru.hse.todo.console.Option;
+
 /**
  * Menu option that reads input from standard input, extracts menu item number and
  * delegates processing of this number to encapsulated Option with @{@link #execute(int)} call.
