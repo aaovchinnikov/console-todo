@@ -1,14 +1,16 @@
 package ru.hse.todo.console.options;
 
-import ru.hse.todo.TodoList;
+import java.util.List;
+
+import ru.hse.todo.Todo;
 
 public final class DisplayTodosOption extends AbstarctOption {
-	private final TodoList todos;
+	private final List<Todo> todos;
 	
 	/**
 	 * @param todos
 	 */
-	public DisplayTodosOption(TodoList todos) {
+	public DisplayTodosOption(List<Todo> todos) {
 		this.todos = todos;
 	}
 
@@ -16,8 +18,9 @@ public final class DisplayTodosOption extends AbstarctOption {
 	public void execute() {
 		System.out.println();
 		System.out.println("-------------- Current TODOs --------------");
-		this.todos.println();
+		for(Todo todo: this.todos) {
+			todo.print();	
+		}
 		System.out.println();
 	}
-
 }

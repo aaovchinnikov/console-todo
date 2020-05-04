@@ -1,6 +1,7 @@
 package ru.hse.todo;
 
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SimpleTodo implements Todo {
 	private final String name;
@@ -18,9 +19,13 @@ public class SimpleTodo implements Todo {
 	}
 	
 	@Override
-	public void print() {
-		System.out.println("Name: " + this.name);
-		System.out.println("Description: " + this.descrition);
-		System.out.println("Due to: " + this.due.toLocalDateTime());
+	public void print(Output output) {
+		// TODO inject formatter
+		final DateTimeFormatter yyyy_MM_dd_HH_mm = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+		output.writeHeader("todo")
+			.writePart("name", this.name)
+			.writePart("descrition", this.descrition)
+			.writePart("due", yyyy_MM_dd_HH_mm.format(this.due.toLocalDateTime()))
+			.writeTrailer("todo");
 	}
 }
