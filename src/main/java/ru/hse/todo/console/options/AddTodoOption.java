@@ -1,47 +1,51 @@
 package ru.hse.todo.console.options;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 import ru.hse.todo.TodoOrderedStorage;
+import ru.hse.todo.console.ConsoleTodoDescription;
+import ru.hse.todo.console.ConsoleTodoDue;
+import ru.hse.todo.console.ConsoleTodoName;
+import ru.hse.todo.todos.SimpleTodo;
 
 public class AddTodoOption extends AbstarctOption {
 	private final TodoOrderedStorage storage;
-	private final Scanner scanner;
-	private final String format;
+	private final ConsoleTodoName name;
+	private final ConsoleTodoDescription description;
+	private final ConsoleTodoDue due;
 	private final DateTimeFormatter formatter;
 	
 	/**
 	 * @param storage
+	 * @param name
+	 * @param description
+	 * @param due
+	 * @param formatter
 	 */
-	public AddTodoOption(TodoOrderedStorage storage, Scanner scanner, String format, DateTimeFormatter formatter) {
+	public AddTodoOption(TodoOrderedStorage storage, ConsoleTodoName name, ConsoleTodoDescription description,
+			ConsoleTodoDue due, DateTimeFormatter formatter) {
 		this.storage = storage;
-		this.scanner = scanner;
-		this.format = format;
+		this.name = name;
+		this.description = description;
+		this.due = due;
 		this.formatter = formatter;
 	}
 
 	@Override
 	public void execute() {
-		//TODO split reading of components to separate objects
 		System.out.println();
 		System.out.println("-------------- Add TODO ---------------");
-		System.out.print("Type name for new TODO in one line and press 'Enter' key: ");
-		final String name = this.scanner.nextLine();
-		//TODO add emptyness check
-		System.out.println(name);
-		System.out.print("Type description for new TODO in one line and press 'Enter' key: ");
-		final String description = this.scanner.nextLine();
-		//TODO add emptyness check
-		System.out.println(description);
-		System.out.print("Type due date and time for new TODO formatted as \'" + this.format + "\' (without surrounding quotes) and press 'Enter' key: ");
-		final String dueString = this.scanner.nextLine();
-		//TODO add try-catch to handle parse DateTimeParseException
-		ZonedDateTime due = LocalDateTime.parse(dueString,formatter).atZone(ZoneId.systemDefault());
-		System.out.println(formatter.format(due.toLocalDateTime()));
+		final String todoName = this.name.name();
+		final String todoDescription = this.description.description();
+		final ZonedDateTime todoDue = this.due.due();
 		System.out.println();
+		try {
+			this.storage.add(new SimpleTodo(todoName, todoDescription, todoDue, this.formatter));
+			System.out.println("The new TODO created and saved.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

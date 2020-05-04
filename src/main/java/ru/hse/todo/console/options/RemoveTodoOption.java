@@ -32,7 +32,7 @@ public final class RemoveTodoOption extends AbstarctOption {
 				final int index = selection.index();
 				final Todo removing = todos.get(index);
 				this.storage.remove(index, removing);
-				System.out.println("Selected Todo removed.");
+				System.out.println("\nSelected Todo removed.");
 			}
 			System.out.println();
 		} catch (IOException e) {

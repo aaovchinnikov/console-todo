@@ -86,8 +86,13 @@ public final class Main
        						3,
        						new AddTodoOption(
        							storage,
-       							scanner,
-       							format,
+       							new ConsoleTodoName(scanner),
+       							new ConsoleTodoDescription(scanner),
+       							new ConsoleTodoDue(
+       								scanner,
+           							format,
+           							yyyy_MM_dd_HH_mm
+								),
        							yyyy_MM_dd_HH_mm
        						),
        						new ChainedOption(

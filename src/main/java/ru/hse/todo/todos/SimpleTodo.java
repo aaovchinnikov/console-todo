@@ -7,7 +7,7 @@ import ru.hse.todo.Output;
 import ru.hse.todo.Todo;
 
 /**
- * Trivial in-memory implementation of Todo. Stores passes values as fields. Uses provided
+ * Trivial in-memory implementation of Todo. Stores passed values as fields. Uses provided
  * {@link DateTimeFormatter} to format <b>due</b> field at print time.
  * @author Alexander Ovchinnikov
  * @implNote Immutable, thread-safe.
