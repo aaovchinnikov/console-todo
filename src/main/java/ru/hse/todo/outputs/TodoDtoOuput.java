@@ -14,7 +14,7 @@ import ru.hse.todo.todos.SimpleTodo;
  * @author Alexander Ovchinnikov
  *
  */
-public class TodoDtoOuput implements Output {
+public final class TodoDtoOuput implements Output {
 	private boolean ready = false;
 	private String name;
 	private String descrition;

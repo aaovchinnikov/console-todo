@@ -16,7 +16,7 @@ import ru.hse.todo.Todo;
  * @author Alexander Ovchinnikov
  *
  */
-public class DetailTodoOutput implements Output {
+public final class DetailTodoOutput implements Output {
 	private boolean ready = false;
 	private String name;
 	private String descrition;

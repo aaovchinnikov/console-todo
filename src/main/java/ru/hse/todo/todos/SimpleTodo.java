@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import ru.hse.todo.Output;
 import ru.hse.todo.Todo;
 
-public class SimpleTodo implements Todo {
+public final class SimpleTodo implements Todo {
 	private final String name;
 	private final String descrition;
 	private final ZonedDateTime due;

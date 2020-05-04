@@ -6,7 +6,7 @@ import ru.hse.todo.Selection;
 import ru.hse.todo.Todo;
 import ru.hse.todo.outputs.DetailTodoOutput;
 
-public class DisplayTodoDetails extends AbstarctOption {
+public final class DisplayTodoDetails extends AbstarctOption {
 	private final List<Todo> todos;
 	private final Selection selection;
 	

@@ -7,7 +7,7 @@ import ru.hse.todo.Output;
  * @author Alexander Ovchinnikov
  *
  */
-public class BriefTodoOutput implements Output {
+public final class BriefTodoOutput implements Output {
 	private String brief;
 	
 	@Override
