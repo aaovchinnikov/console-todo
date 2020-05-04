@@ -1,6 +1,7 @@
 package ru.hse.todo.storages;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,17 +12,19 @@ import ru.hse.todo.outputs.TodoDtoOuput;
 
 public final class InMemoryTodoList implements TodoOrderedStorage {
 	private final List<Todo> todos;
+	private final DateTimeFormatter formatter;
 	
 	/**
 	 * @param todos
 	 */
-	public InMemoryTodoList() {
+	public InMemoryTodoList(DateTimeFormatter formatter) {
 		this.todos = new LinkedList<Todo>();
+		this.formatter = formatter;
 	}
 
 	@Override
 	synchronized public Todo add(Todo todo) throws IOException {
-		TodoDtoOuput output = new TodoDtoOuput();
+		TodoDtoOuput output = new TodoDtoOuput(this.formatter);
 		todo.print(output);
 		Todo added = output.build();
 		this.todos.add(added);
@@ -37,7 +40,7 @@ public final class InMemoryTodoList implements TodoOrderedStorage {
 	}
 
 	@Override
-	public List<Todo> todos() throws IOException {
+	synchronized public List<Todo> todos() throws IOException {
 		return Collections.unmodifiableList(this.todos);
 	}
 

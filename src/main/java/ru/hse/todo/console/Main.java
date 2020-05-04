@@ -1,11 +1,10 @@
 package ru.hse.todo.console;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import ru.hse.todo.Selection;
 import ru.hse.todo.TodoOrderedStorage;
 import ru.hse.todo.console.options.ChainedOption;
 import ru.hse.todo.console.options.ConsoleOption;
@@ -13,8 +12,8 @@ import ru.hse.todo.console.options.DisplayTodoDetails;
 import ru.hse.todo.console.options.DisplayTodosOption;
 import ru.hse.todo.console.options.NotImplementedOption;
 import ru.hse.todo.console.options.QuitOption;
+import ru.hse.todo.console.options.RemoveTodoOption;
 import ru.hse.todo.storages.InMemoryTodoList;
-import ru.hse.todo.todos.SimpleTodo;
 
 /**
  * Hello world!
@@ -25,7 +24,8 @@ public final class Main
     public static void main( String[] args ) throws IOException
     {
     	final DateTimeFormatter yyyy_MM_dd_HH_mm = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
-    	final TodoOrderedStorage storage = new InMemoryTodoList();
+    	final TodoOrderedStorage storage = new InMemoryTodoList(yyyy_MM_dd_HH_mm);
+/*  
     	storage.add(
     		new SimpleTodo(
        			"Task 1",
@@ -56,9 +56,15 @@ public final class Main
     			).atZone(ZoneId.systemDefault())
     		)
     	);
+*/    	
     	final Option notImplemented = new NotImplementedOption();
     	final Scanner scanner = new Scanner(System.in);
-    	final DisplayTodosOption displayTodos = new DisplayTodosOption(storage.todos());
+    	final DisplayTodosOption displayTodos = new DisplayTodosOption(storage);
+    	final Selection selection = new ConsoleSelection(
+			storage,
+			scanner,
+			displayTodos
+		);
         new ConsoleApp(
         	new MainMenu(),
         	new ConsoleOption(
@@ -69,19 +75,19 @@ public final class Main
        				new ChainedOption(
        					2,
        					new DisplayTodoDetails(
-       						storage.todos(),
-       						new ConsoleSelection(
-       							storage.todos(),
-       							scanner,
-       							displayTodos
-       						)
+       						storage,
+       						displayTodos,
+       						selection
        					),
        					new ChainedOption(
        						3,
        						notImplemented,
        						new ChainedOption(
        							4,
-       							notImplemented,
+       							new RemoveTodoOption(
+       								storage,
+       								selection
+       							),
        							new ChainedOption(
        								5,
        								new QuitOption(),

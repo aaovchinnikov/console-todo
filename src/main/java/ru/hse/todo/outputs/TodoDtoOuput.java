@@ -19,8 +19,14 @@ public final class TodoDtoOuput implements Output {
 	private String name;
 	private String descrition;
 	private ZonedDateTime due;
-	// TODO inject formatter
-	private final DateTimeFormatter yyyy_MM_dd_HH_mm = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+	private final DateTimeFormatter formatter;
+	
+	/**
+	 * @param formatter
+	 */
+	public TodoDtoOuput(DateTimeFormatter formatter) {
+		this.formatter = formatter;
+	}
 
 	@Override
 	public Output writeHeader(String header) {
@@ -47,7 +53,7 @@ public final class TodoDtoOuput implements Output {
 			return this;
 		}
 		case "due": {
-			this.due = LocalDateTime.parse(value, yyyy_MM_dd_HH_mm).atZone(ZoneId.systemDefault());
+			this.due = LocalDateTime.parse(value, this.formatter).atZone(ZoneId.systemDefault());
 			return this;
 		}
 		default:
@@ -62,7 +68,7 @@ public final class TodoDtoOuput implements Output {
 
 	public Todo build() {
 		if (this.ready) {
-			return new SimpleTodo(name, descrition, due);
+			return new SimpleTodo(name, descrition, due, formatter);
 		} else {
 			throw new IllegalStateException("Todo has not enogh data to be built.");
 		}
