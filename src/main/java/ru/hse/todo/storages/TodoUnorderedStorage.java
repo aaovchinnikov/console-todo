@@ -1,7 +1,9 @@
-package ru.hse.todo;
+package ru.hse.todo.storages;
 
 import java.io.IOException;
 import java.util.Collection;
+
+import ru.hse.todo.Todo;
 
 /**
  * Defines storage for {@link Todo} objects, that doesn't allow to rely on order
