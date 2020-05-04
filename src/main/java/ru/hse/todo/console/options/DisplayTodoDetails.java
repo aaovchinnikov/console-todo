@@ -1,6 +1,7 @@
 package ru.hse.todo.console.options;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import ru.hse.todo.Selection;
@@ -10,30 +11,29 @@ import ru.hse.todo.outputs.DetailTodoOutput;
 
 public final class DisplayTodoDetails extends AbstarctOption {
 	private final TodoOrderedStorage storage;
-	private final DisplayTodosOption option;
 	private final Selection selection;
+	private final DateTimeFormatter formatter;
 	
 	/**
 	 * @param todos
 	 */
-	public DisplayTodoDetails(TodoOrderedStorage storage, DisplayTodosOption option, Selection selection) {
+	public DisplayTodoDetails(TodoOrderedStorage storage, Selection selection, DateTimeFormatter formatter) {
 		this.storage = storage;
-		this.option = option;
-		this.selection = selection;		
+		this.selection = selection;	
+		this.formatter = formatter;
 	}
 
 	@Override
 	public void execute() {
 		try {
 			final List<Todo> todos = storage.todos();
-			System.out.println();
 			if (todos.isEmpty()) {
+				System.out.println();
 				System.out.println("-------------- Current TODOs --------------");
 				System.out.println("\nTodo list is empty. Can't choose Todo to disply from empty list.");
 			} else {
-				this.option.execute();
 				final int index = selection.index();
-				final DetailTodoOutput output = new DetailTodoOutput();
+				final DetailTodoOutput output = new DetailTodoOutput(formatter);
 				System.out.println();
 				System.out.println("-------------- Selected TODO --------------");
 				System.out.println("Index: " + (index + 1));

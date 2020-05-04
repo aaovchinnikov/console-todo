@@ -8,6 +8,6 @@ public final class MainMenu {
 		System.out.println("3. Add new TODO");
 		System.out.println("4. Remove TODO");
 		System.out.println("5. Quit");
-		System.out.print("Type option number and press \'Enter\' key: ");
+		System.out.print("\nType option number and press \'Enter\' key: ");
 	}
 }

@@ -21,8 +21,14 @@ public final class DetailTodoOutput implements Output {
 	private String name;
 	private String descrition;
 	private ZonedDateTime due;
-	// TODO inject formatter
-	private final DateTimeFormatter yyyy_MM_dd_HH_mm = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+	private final DateTimeFormatter formatter;
+
+	/**
+	 * @param formatter
+	 */
+	public DetailTodoOutput(DateTimeFormatter formatter) {
+		this.formatter = formatter;
+	}
 
 	@Override
 	public Output writeHeader(String header) {
@@ -49,7 +55,7 @@ public final class DetailTodoOutput implements Output {
 			return this;
 		}
 		case "due": {
-			this.due = LocalDateTime.parse(value, yyyy_MM_dd_HH_mm).atZone(ZoneId.systemDefault());
+			this.due = LocalDateTime.parse(value, this.formatter).atZone(ZoneId.systemDefault());
 			return this;
 		}
 		default:
@@ -66,7 +72,7 @@ public final class DetailTodoOutput implements Output {
 		if (this.ready) {
 			System.out.println("Name: " + this.name);
 			System.out.println("Description: " + this.descrition);
-			System.out.println("Due to: " + this.due.toLocalDateTime());
+			System.out.println("Due to: " + formatter.format(this.due.toLocalDateTime()));
 		} else {
 			throw new IllegalStateException("Output doesn't have enogh data to print the Todo.");
 		}

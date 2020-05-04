@@ -24,8 +24,8 @@ public final class RemoveTodoOption extends AbstarctOption {
 	public void execute() {
 		try {
 			final List<Todo> todos = this.storage.todos();
-			System.out.println();
 			if (todos.isEmpty()) {
+				System.out.println();
 				System.out.println("-------------- Current TODOs --------------");
 				System.out.println("\nTodo list is empty. Can't remove from empty list.");
 			} else {

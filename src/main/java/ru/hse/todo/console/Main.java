@@ -1,6 +1,8 @@
 package ru.hse.todo.console;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -14,6 +16,7 @@ import ru.hse.todo.console.options.NotImplementedOption;
 import ru.hse.todo.console.options.QuitOption;
 import ru.hse.todo.console.options.RemoveTodoOption;
 import ru.hse.todo.storages.InMemoryTodoList;
+import ru.hse.todo.todos.SimpleTodo;
 
 /**
  * Hello world!
@@ -25,7 +28,6 @@ public final class Main
     {
     	final DateTimeFormatter yyyy_MM_dd_HH_mm = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
     	final TodoOrderedStorage storage = new InMemoryTodoList(yyyy_MM_dd_HH_mm);
-/*  
     	storage.add(
     		new SimpleTodo(
        			"Task 1",
@@ -33,7 +35,8 @@ public final class Main
             	LocalDateTime.parse(
             		"2020.05.03 14:00",
             		yyyy_MM_dd_HH_mm
-            	).atZone(ZoneId.systemDefault())
+            	).atZone(ZoneId.systemDefault()),
+       			yyyy_MM_dd_HH_mm
             )
     	);
     	storage.add(
@@ -43,7 +46,8 @@ public final class Main
            		LocalDateTime.parse(
            			"2020.05.04 15:00",
                 	yyyy_MM_dd_HH_mm
-                ).atZone(ZoneId.systemDefault())
+                ).atZone(ZoneId.systemDefault()),
+           		yyyy_MM_dd_HH_mm
            	)
     	);
     	storage.add(
@@ -53,10 +57,10 @@ public final class Main
     			LocalDateTime.parse(
     				"2020.05.05 15:00",
     				yyyy_MM_dd_HH_mm
-    			).atZone(ZoneId.systemDefault())
+    			).atZone(ZoneId.systemDefault()),
+    			yyyy_MM_dd_HH_mm
     		)
     	);
-*/    	
     	final Option notImplemented = new NotImplementedOption();
     	final Scanner scanner = new Scanner(System.in);
     	final DisplayTodosOption displayTodos = new DisplayTodosOption(storage);
@@ -76,8 +80,8 @@ public final class Main
        					2,
        					new DisplayTodoDetails(
        						storage,
-       						displayTodos,
-       						selection
+       						selection,
+       						yyyy_MM_dd_HH_mm
        					),
        					new ChainedOption(
        						3,
