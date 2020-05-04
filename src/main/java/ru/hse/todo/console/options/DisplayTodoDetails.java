@@ -33,7 +33,7 @@ public final class DisplayTodoDetails extends AbstarctOption {
 			} else {
 				this.option.execute();
 				final int index = selection.index();
-				DetailTodoOutput output = new DetailTodoOutput();
+				final DetailTodoOutput output = new DetailTodoOutput();
 				System.out.println();
 				System.out.println("-------------- Selected TODO --------------");
 				System.out.println("Index: " + (index + 1));
