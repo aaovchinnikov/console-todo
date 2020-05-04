@@ -28,7 +28,8 @@ public final class DisplayTodoDetails extends AbstarctOption {
 			final List<Todo> todos = storage.todos();
 			System.out.println();
 			if (todos.isEmpty()) {
-				System.out.println("Todo list is empty");
+				System.out.println("-------------- Current TODOs --------------");
+				System.out.println("\nTodo list is empty. Can't choose Todo to disply from empty list.");
 			} else {
 				this.option.execute();
 				final int index = selection.index();
