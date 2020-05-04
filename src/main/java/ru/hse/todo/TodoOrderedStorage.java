@@ -38,7 +38,7 @@ public interface TodoOrderedStorage {
 	 * @apiNote Use both <b>todo</b> and <b>index</b> to protect against blind
 	 *          unintended removal from storage.
 	 * @implSpec Removal should rely on internal/serialized form of objects in the
-	 *           storage - let the storage to it its business.
+	 *           storage - let the storage to do its business.
 	 */
 	void remove(int index, Todo todo) throws IOException;
 

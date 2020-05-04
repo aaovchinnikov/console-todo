@@ -31,7 +31,7 @@ public interface TodoUnorderedStorage {
 	 * @param todo - {@link Todo} to be removed from the storage.
 	 * @throws IOException in case of any troubles with underneath storage.
 	 * @implSpec Removal should rely on internal/serialized form of objects in the
-	 *           storage - let the storage to it its business.
+	 *           storage - let the storage to do its business.
 	 */
 	void remove(Todo todo) throws IOException;
 
