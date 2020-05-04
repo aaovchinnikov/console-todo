@@ -14,7 +14,7 @@ import ru.hse.todo.todos.SimpleTodo;
  * @author Alexander Ovchinnikov
  *
  */
-public final class SimpleTodoFactoryOuput implements Output {
+public final class SimpleTodoFactoryOutput implements Output {
 	private boolean ready = false;
 	private String name;
 	private String descrition;
@@ -24,7 +24,7 @@ public final class SimpleTodoFactoryOuput implements Output {
 	/**
 	 * @param formatter
 	 */
-	public SimpleTodoFactoryOuput(DateTimeFormatter formatter) {
+	public SimpleTodoFactoryOutput(DateTimeFormatter formatter) {
 		this.formatter = formatter;
 	}
 

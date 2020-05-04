@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import ru.hse.todo.Selection;
 import ru.hse.todo.TodoOrderedStorage;
+import ru.hse.todo.console.options.AddTodoOption;
 import ru.hse.todo.console.options.ChainedOption;
 import ru.hse.todo.console.options.ConsoleOption;
 import ru.hse.todo.console.options.DisplayTodoDetails;
@@ -26,16 +27,14 @@ public final class Main
 {
     public static void main( String[] args ) throws IOException
     {
-    	final DateTimeFormatter yyyy_MM_dd_HH_mm = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+    	final String format = "yyyy.MM.dd HH:mm";
+    	final DateTimeFormatter yyyy_MM_dd_HH_mm = DateTimeFormatter.ofPattern(format);
     	final TodoOrderedStorage storage = new InMemoryTodoList(yyyy_MM_dd_HH_mm);
     	storage.add(
     		new SimpleTodo(
        			"Task 1",
            		"Description 1",
-            	LocalDateTime.parse(
-            		"2020.05.03 14:00",
-            		yyyy_MM_dd_HH_mm
-            	).atZone(ZoneId.systemDefault()),
+           		LocalDateTime.of(2020, 05, 03, 14, 00).atZone(ZoneId.systemDefault()),
        			yyyy_MM_dd_HH_mm
             )
     	);
@@ -85,7 +84,12 @@ public final class Main
        					),
        					new ChainedOption(
        						3,
-       						notImplemented,
+       						new AddTodoOption(
+       							storage,
+       							scanner,
+       							format,
+       							yyyy_MM_dd_HH_mm
+       						),
        						new ChainedOption(
        							4,
        							new RemoveTodoOption(
