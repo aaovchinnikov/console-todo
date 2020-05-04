@@ -6,11 +6,19 @@ import java.time.format.DateTimeFormatter;
 import ru.hse.todo.Output;
 import ru.hse.todo.Todo;
 
+/**
+ * Trivial in-memory implementation of Todo. Stores passes values as fields. Uses provided
+ * {@link DateTimeFormatter} to format <b>due</b> field at print time.
+ * @author Alexander Ovchinnikov
+ * @implNote Immutable, thread-safe.
+ *
+ */
 public final class SimpleTodo implements Todo {
 	private final String name;
 	private final String descrition;
 	private final ZonedDateTime due;
 	private final DateTimeFormatter formatter;
+	
 	/**
 	 * @param name
 	 * @param descrition

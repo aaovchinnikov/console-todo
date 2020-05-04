@@ -8,7 +8,7 @@ import java.util.List;
 
 import ru.hse.todo.Todo;
 import ru.hse.todo.TodoOrderedStorage;
-import ru.hse.todo.outputs.TodoDtoOuput;
+import ru.hse.todo.outputs.SimpleTodoFactoryOuput;
 
 public final class InMemoryTodoList implements TodoOrderedStorage {
 	private final List<Todo> todos;
@@ -24,7 +24,7 @@ public final class InMemoryTodoList implements TodoOrderedStorage {
 
 	@Override
 	synchronized public Todo add(Todo todo) throws IOException {
-		TodoDtoOuput output = new TodoDtoOuput(this.formatter);
+		SimpleTodoFactoryOuput output = new SimpleTodoFactoryOuput(this.formatter);
 		todo.print(output);
 		Todo added = output.build();
 		this.todos.add(added);
