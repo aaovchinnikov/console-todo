@@ -26,7 +26,7 @@ public final class DisplayTodosOption extends AbstarctOption {
 			if (todos.isEmpty()) {
 				System.out.println("\nTodo list is empty.");
 			} else {
-				BriefTodoOutput output = new BriefTodoOutput();
+				final BriefTodoOutput output = new BriefTodoOutput();
 				int index = 0;
 				for(Todo todo: todos) {
 					index++;
