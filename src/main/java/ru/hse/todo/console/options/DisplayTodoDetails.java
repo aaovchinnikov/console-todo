@@ -4,20 +4,20 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import ru.hse.todo.Selection;
 import ru.hse.todo.Todo;
 import ru.hse.todo.TodoOrderedStorage;
+import ru.hse.todo.console.ConsoleSelection;
 import ru.hse.todo.outputs.DetailTodoOutput;
 
 public final class DisplayTodoDetails extends AbstarctOption {
 	private final TodoOrderedStorage storage;
-	private final Selection selection;
+	private final ConsoleSelection selection;
 	private final DateTimeFormatter formatter;
 	
 	/**
 	 * @param todos
 	 */
-	public DisplayTodoDetails(TodoOrderedStorage storage, Selection selection, DateTimeFormatter formatter) {
+	public DisplayTodoDetails(TodoOrderedStorage storage, ConsoleSelection selection, DateTimeFormatter formatter) {
 		this.storage = storage;
 		this.selection = selection;	
 		this.formatter = formatter;

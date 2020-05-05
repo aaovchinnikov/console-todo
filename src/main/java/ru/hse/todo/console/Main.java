@@ -6,7 +6,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import ru.hse.todo.Selection;
 import ru.hse.todo.TodoOrderedStorage;
 import ru.hse.todo.console.options.AddTodoOption;
 import ru.hse.todo.console.options.ChainedOption;
@@ -63,7 +62,7 @@ public final class Main
     	final Option notImplemented = new NotImplementedOption();
     	final Scanner scanner = new Scanner(System.in);
     	final DisplayTodosOption displayTodos = new DisplayTodosOption(storage);
-    	final Selection selection = new ConsoleSelection(
+    	final ConsoleSelection selection = new ConsoleSelection(
 			storage,
 			scanner,
 			displayTodos

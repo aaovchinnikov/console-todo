@@ -4,19 +4,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import ru.hse.todo.Selection;
 import ru.hse.todo.Todo;
 import ru.hse.todo.TodoOrderedStorage;
 import ru.hse.todo.console.options.DisplayTodosOption;
 
-public final class ConsoleSelection implements Selection {
+public final class ConsoleSelection {
 	private final TodoOrderedStorage storage;
 	private final Scanner scanner;
 	private final DisplayTodosOption option;
-	
+
 	/**
-	 * 
-	 * @param todos - should be non-empty.
+	 * @param storage
+	 * @param scanner
+	 * @param option
 	 */
 	public ConsoleSelection(TodoOrderedStorage storage, Scanner scanner, DisplayTodosOption option) {
 		this.storage = storage;
@@ -25,9 +25,11 @@ public final class ConsoleSelection implements Selection {
 	}
 
 	/**
+	 * Asks user to select one of {@link Todo} from {@link TodoOrderedStorage} by
+	 * typing its index in list, then handles user input.
 	 * 
+	 * @return selected {@link Todo} index in {@link TodoOrderedStorage}, indexes starts from 0.
 	 */
-	@Override
 	public int index() {
 		try {
 			List<Todo> todos = this.storage.todos();
@@ -41,7 +43,8 @@ public final class ConsoleSelection implements Selection {
 				try {
 					final int parsed = Integer.parseInt(input);
 					if ((parsed < 1) || (parsed > todos.size())) {
-						System.out.println("\nInvalid value entered. Integer value from 1.." + todos.size() + " expected.");
+						System.out.println(
+								"\nInvalid value entered. Integer value from 1.." + todos.size() + " expected.");
 					} else {
 						return parsed - 1;
 					}

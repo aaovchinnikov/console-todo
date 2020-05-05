@@ -3,19 +3,19 @@ package ru.hse.todo.console.options;
 import java.io.IOException;
 import java.util.List;
 
-import ru.hse.todo.Selection;
 import ru.hse.todo.Todo;
 import ru.hse.todo.TodoOrderedStorage;
+import ru.hse.todo.console.ConsoleSelection;
 
 public final class RemoveTodoOption extends AbstarctOption {
 	private final TodoOrderedStorage storage;
-	private final Selection selection;
+	private final ConsoleSelection selection;
 
 	/**
 	 * @param storage
 	 * @param selection
 	 */
-	public RemoveTodoOption(TodoOrderedStorage storage, Selection selection) {
+	public RemoveTodoOption(TodoOrderedStorage storage, ConsoleSelection selection) {
 		this.storage = storage;
 		this.selection = selection;
 	}
