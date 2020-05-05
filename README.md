@@ -6,7 +6,7 @@ A pet project to write TODO-list application in OOP design with keeping in mind 
 4. For now console-UI is main UI implementation.
 5. UI will be changed later. Easy UI replacing mechanism needed.
 6. For now in-memory storage used.
-7. Storage will be changed lated. Easy storage replacing mechanism needed.
+7. Storage will be changed later. Easy storage replacing mechanism needed.
 
 Code organized as Maven-project.
 Requires at least Java 11 and Apache Maven 3.6.3 installed and configured.
