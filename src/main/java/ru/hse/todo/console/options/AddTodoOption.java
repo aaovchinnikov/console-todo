@@ -40,10 +40,10 @@ public class AddTodoOption extends AbstarctOption {
 		final String todoName = this.name.name();
 		final String todoDescription = this.description.description();
 		final ZonedDateTime todoDue = this.due.due();
-		System.out.println();
 		try {
 			this.storage.add(new SimpleTodo(todoName, todoDescription, todoDue, this.formatter));
 			System.out.println("The new TODO created and saved.");
+			System.out.println();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
