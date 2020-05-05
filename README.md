@@ -33,6 +33,6 @@ java --module-path "target/classes" --module ru.hse.todo.console/ru.hse.todo.con
 Or in short form
 
 ```
-java -p "target/classes" --m ru.hse.todo.console/ru.hse.todo.console.Main
+java -p "target/classes" -m ru.hse.todo.console/ru.hse.todo.console.Main
 ```
 
