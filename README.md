@@ -8,7 +8,7 @@ A pet project to write TODO-list application in OOP design with keeping in mind 
 6. For now in-memory storage used.
 7. Storage will be changed later. Easy storage replacing mechanism needed.
 
-Code organized as Maven-project.
+Code is organized as Maven-project.
 Requires at least Java 11 and Apache Maven 3.6.3 installed and configured.
 
 ## Environment
