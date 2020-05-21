@@ -41,5 +41,5 @@ public interface Output {
 	 * 
 	 * @param trailer
 	 */
-	void writeTrailer(String trailer);
+	Output writeTrailer(String trailer);
 }

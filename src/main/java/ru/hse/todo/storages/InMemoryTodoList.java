@@ -30,7 +30,7 @@ public final class InMemoryTodoList implements TodoOrderedStorage {
 			return todo;
 		} else {
 			SimpleTodoFactoryOutput output = new SimpleTodoFactoryOutput(this.formatter);
-			todo.print(output);
+			output = (SimpleTodoFactoryOutput) todo.print(output);
 			Todo added = output.build();
 			this.todos.add(added);
 			return added;

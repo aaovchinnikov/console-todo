@@ -25,8 +25,9 @@ public final class BriefTodoOutput implements Output {
 	}
 
 	@Override
-	public void writeTrailer(String trailer) {
+	public Output writeTrailer(String trailer) {
 		// do nothing
+		return this;
 	}
 	
 	public void printBrief() {

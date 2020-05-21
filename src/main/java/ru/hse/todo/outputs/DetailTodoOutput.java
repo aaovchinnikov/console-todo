@@ -64,8 +64,9 @@ public final class DetailTodoOutput implements Output {
 	}
 
 	@Override
-	public void writeTrailer(String trailer) {
+	public Output writeTrailer(String trailer) {
 		this.ready = true;
+		return this;
 	}
 
 	public void printDetails() {

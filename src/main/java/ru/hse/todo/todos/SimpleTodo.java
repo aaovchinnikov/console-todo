@@ -32,8 +32,8 @@ public final class SimpleTodo implements Todo {
 	}
 	
 	@Override
-	public void print(Output output) {
-		output.writeHeader("todo")
+	public Output print(Output output) {
+		return output.writeHeader("todo")
 			.writePart("name", this.name)
 			.writePart("descrition", this.descrition)
 			.writePart("due", this.formatter.format(this.due.toLocalDateTime()))

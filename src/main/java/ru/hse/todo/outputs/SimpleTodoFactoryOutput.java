@@ -62,8 +62,9 @@ public final class SimpleTodoFactoryOutput implements Output {
 	}
 
 	@Override
-	public void writeTrailer(String trailer) {
+	public SimpleTodoFactoryOutput writeTrailer(String trailer) {
 		this.ready = true;
+		return this;
 	}
 
 	public Todo build() {
